@@ -66,12 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
       //   paymentDate = parts[i];
       //   break;
       // }
-      const match = parts[i].match(/x(\d{1,2}\/\d{1,2})/i);
-      if (match) {
-        isPaid = true;
-        paymentDate = match[1]; // Lấy phần ngày tháng
-        break;
-      }
+      const match = parts[i].match(/x\((\d{1,2}\/\d{1,2})\)/i);
+if (match) {
+  isPaid = true;
+  paymentDate = match[1]; // Lấy phần ngày tháng trong dấu ()
+  break;
+}
+
 
       const hasK = parts[i].startsWith("k");
       const tokens = parts[i].replace("k", "").split("/");
