@@ -61,30 +61,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     for (let i = 0; i < parts.length; i++) {
-      // if (parts[i].toLowerCase().includes("X")) {
-      //   isPaid = true;
-      //   paymentDate = parts[i];
-      //   break;
-      // }
       const match = parts[i].match(/x\((\d{1,2}\/\d{1,2})\)/i);
-if (match) {
-  isPaid = true;
-  paymentDate = match[1]; // Lấy phần ngày tháng trong dấu ()
-  break;
-}
-
+      if (match) {
+        isPaid = true;
+        paymentDate = match[1]; // Lấy phần ngày tháng trong dấu ()
+        break;
+      }
 
       const hasK = parts[i].startsWith("k");
       const tokens = parts[i].replace("k", "").split("/");
       if (tokens.length === 2) {
         const day = parseInt(tokens[0], 10);
         const month = parseInt(tokens[1], 10);
-        if (isValidDate(day, month, currentYear)) {
+        let year = currentYear;
+
+        // Nếu ngày tháng nhập vào lớn hơn ngày tháng hiện tại, gán năm là năm trước
+        const currentDate = new Date();
+        if (
+          month > currentDate.getMonth() + 1 ||
+          (month === currentDate.getMonth() + 1 && day > currentDate.getDate())
+        ) {
+          year = currentYear - 1;
+        }
+
+        if (isValidDate(day, month, year)) {
           validDates.push({
             date: `${tokens[0].padStart(2, "0")}/${tokens[1].padStart(
               2,
               "0"
-            )}/${currentYear}`,
+            )}/${year}`,
             status: hasK ? "Nghỉ không phép" : "Có học",
           });
         }
@@ -172,39 +177,6 @@ if (match) {
   }
 
   // Nút "Tải hóa đơn":
-  // downloadButton.addEventListener("click", function () {
-  //   if (
-  //     !invoiceContainer.style.display ||
-  //     invoiceContainer.style.display === "none"
-  //   ) {
-  //     alert("⚠ Không có dữ liệu hóa đơn để tải xuống!");
-  //     return;
-  //   }
-  //   const now = new Date();
-  //   const month = now.getMonth() + 1;
-  //   const year = now.getFullYear();
-
-  //   const fileName = `${currentStudentName.replace(
-  //     /\s+/g,
-  //     "_"
-  //   )}_bien_lai_${month}_${year}.png`;
-
-  //   htmlToImage
-  //     .toPng(receiptDiv, { quality: 1, pixelRatio: 2 })
-  //     .then(function (dataUrl) {
-  //       const link = document.createElement("a");
-  //       link.href = dataUrl;
-  //       link.download = fileName;
-  //       document.body.appendChild(link);
-  //       link.click();
-  //       document.body.removeChild(link);
-  //     })
-  //     .catch(function (error) {
-  //       console.error("❌ Lỗi khi tạo ảnh:", error);
-  //       alert("Không thể tạo ảnh hóa đơn. Vui lòng thử lại!");
-  //     });
-  // });
-
   downloadButton.addEventListener("click", function () {
     if (
       !invoiceContainer.style.display ||
