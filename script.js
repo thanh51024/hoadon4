@@ -82,7 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const month = parseInt(tokens[1], 10);
         let year = currentYear;
         const currentMonth = currentDate.getMonth() + 1;
-        const today = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+
+        const now = new Date();
+        const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
 
         // Kiểm tra ngày tháng năm hợp lệ
         if (invoiceType === "past") {
