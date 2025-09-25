@@ -195,14 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       html += "<br>";
     } else {
-      // Thông tin thanh toán với mã QR
-      html += "<br>";
-      html += '<div class="qr-section">';
-      html += "<h4>Quét mã để thanh toán</h4>";
-      html += '<img src="./qr2.png" alt="QR Code"/>';
-      html += '<p style="margin: 2px 0;">BIDV - CN NAM BINH DUONG </p>';
-      html += '<p style="margin: 2px 0;">8834673135</p>';
-      html += '<p style="margin: 2px 0;">Nguyen Quoc Phong</p>';
+
     }
 
     receiptDiv.innerHTML = html;
