@@ -197,7 +197,16 @@ document.addEventListener("DOMContentLoaded", function () {
   
         html += "<br>";
       } else {
-        
+         html += `
+        <div style="text-align: center; margin-top: 100px;">
+          <div style="font-size: 18px;line-height: 1.1; margin-bottom: 6px;">
+              <p style="margin: 4px 0;">P Better Education</p>
+              <p style="margin: 4px 0;">Nguyen Bich Phương</p>
+              <p style="margin: 4px 0;">1903 4607 5770 24</p>
+            </div>
+          <img src="qr.jpg" alt="QR" width="250" height="250">
+        </div>
+      `;
       }
   
       receiptDiv.innerHTML = html;
