@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
          html += `
         <div style="text-align: center; margin-top: 100px;">
-          <div style="font-size: 18px;line-height: 1.1; margin-bottom: 6px;">
+          <div style="font-size: 18px;line-height: 1.2; margin-bottom: 6px;">
               <p style="margin: 4px 0;">P BETTER EDUCATION</p>
               <p style="margin: 4px 0;">NGUYEN BICH PHUONG</p>
               <p style="margin: 4px 0;">1903 4607 5770 24</p>
